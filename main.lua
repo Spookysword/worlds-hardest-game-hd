@@ -2,13 +2,49 @@ local push = require "push"
 require "randomFuncs"
 require "drawFuncs"
 
-local gameWidth, gameHeight = 1280, 720 --fixed game resolution
-local windowWidth, windowHeight = love.window.getDesktopDimensions()
-windowWidth, windowHeight = windowWidth*.7, windowHeight*.7 --make the window a bit smaller than the screen itself
+Thickness = 9
 
-Level = { GridX = 20, BgColor = { 170, 165, 255 }, GridColor = { 224, 218, 254 }, BallColor = { 0, 0, 255 }, BallBorderColor = { 0, 0, 68 } }
+require "player"
+
+local gameWidth, gameHeight = 1920, 1080
+local windowWidth, windowHeight = love.window.getDesktopDimensions()
+windowWidth, windowHeight = windowWidth*.7, windowHeight*.7
+
+-- General stats
+CheckpointColor = { 181, 254, 180 }
+
+Level = { GridX = 24, Objects = { 
+
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','s','s','s','w','w','w','w','w','w','w','w','w','w',' ',' ','e','e','e','w','w','w',
+  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
+  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
+  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
+  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
+  'w','w','w','s','s','s',' ',' ','w','w','w','w','w','w','w','w','w','w','e','e','e','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
+  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'
+ }, 
+  
+  BgColor = { 180, 181, 254 }, GridColor = { 230, 230, 255 }, BallColor = { 0, 0, 255 }, BallBorderColor = { 0, 0, 68 } }
 
 push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
+
+function love.load()
+  love.window.setFullscreen(not love.window.getFullscreen())
+  push:resize(love.graphics.getWidth(), love.graphics.getHeight())
+end
+
+function love.update(dt)
+  dt = math.min(dt, 1/30)
+  HandlePlayerInput(dt)
+end
 
 function love.draw()
   push:start()
@@ -16,6 +52,8 @@ function love.draw()
   love.graphics.clear(ToDec(Level.BgColor))
   
   DrawGrid(Level.GridX, ToDec(Level.GridColor))
+  DrawWall(Level.GridX, ToDec(Level.BgColor), ToDec(CheckpointColor))
+  DrawPlayer(Player)
   
   push:finish()
 end
