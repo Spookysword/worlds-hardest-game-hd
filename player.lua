@@ -21,8 +21,7 @@ function HandlePlayerInput(dt)
         Player.y = Player.y + (Player.moveSpeed.y*dt)
         if PlayerMovement(Level.GridX) == false then
             Player.y = Player.y - (Player.moveSpeed.y*dt)
-            -- This is the odd one out. Still can't figure out why.
-            Player.y = ((Round(Player.y/sizeX)) * sizeX) + (Thickness/2) - 1
+            Player.y = (((Round(Player.y/sizeX)+1) * sizeX) - yOffset) - Player.h - Thickness*1.5
         end
     end
     if love.keyboard.isDown('d') or love.keyboard.isDown('right') then
