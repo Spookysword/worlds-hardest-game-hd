@@ -7,7 +7,6 @@ function HandlePlayerInput(dt)
         Player.y = Player.y - (Player.moveSpeed.y*dt)
         if PlayerMovement(Level.GridX) == false then
             Player.y = Player.y + (Player.moveSpeed.y*dt)
-            -- I know why this needs to be multiplied by 1.5, don't worry about it ;)
             Player.y = (((Round(Player.y/sizeX)) * sizeX) - yOffset) + (Thickness*1.5)
         end
     end
@@ -15,13 +14,14 @@ function HandlePlayerInput(dt)
         Player.x = Player.x - (Player.moveSpeed.x*dt)
         if PlayerMovement(Level.GridX) == false then
             Player.x = Player.x + (Player.moveSpeed.x*dt)
-            Player.x = (((Round(Player.x/sizeX)) * sizeX)) + Thickness*2
+            Player.x = (((Round(Player.x/sizeX)) * sizeX)) + Thickness*1.5
         end
     end
     if love.keyboard.isDown('s') or love.keyboard.isDown('down') then
         Player.y = Player.y + (Player.moveSpeed.y*dt)
         if PlayerMovement(Level.GridX) == false then
             Player.y = Player.y - (Player.moveSpeed.y*dt)
+            -- This is the odd one out. Still can't figure out why.
             Player.y = ((Round(Player.y/sizeX)) * sizeX) + (Thickness/2) - 1
         end
     end
@@ -34,8 +34,8 @@ function HandlePlayerInput(dt)
     end
 end
 
---DrawTest1 = { 0, 0, 0, 0 }
---DrawTest2 = { 0, 0, 0, 0 }
+DrawTest1 = { 0, 0, 0, 0 }
+DrawTest2 = { 0, 0, 0, 0 }
 
 function PlayerMovement(gridX)
     local x, y = 0, 0
@@ -44,8 +44,8 @@ function PlayerMovement(gridX)
     
     for k in pairs(Level.Objects) do
         if Level.Objects[k] == 'w' then
-            if AABB((x*sizeX)-(Thickness/2), (y*sizeX)-yOffset-(Thickness/2), sizeX+(Thickness*1.5), sizeX+(Thickness), Player.x-Thickness, Player.y-Thickness, Player.w+(Thickness*2), Player.h+(Thickness*2)) then
-                DrawTest1 = { (x*sizeX)-(Thickness/2), (y*sizeX)-yOffset-(Thickness/2), sizeX+(Thickness*1.5), sizeX+(Thickness) }
+            if AABB((x*sizeX)-(Thickness/2), (y*sizeX)-yOffset-(Thickness/2), sizeX+(Thickness), sizeX+(Thickness), Player.x-Thickness, Player.y-Thickness, Player.w+(Thickness*2), Player.h+(Thickness*2)) then
+                DrawTest1 = { (x*sizeX)-(Thickness/2), (y*sizeX)-yOffset-(Thickness/2), sizeX+(Thickness), sizeX+(Thickness) }
                 DrawTest2 = { Player.x-Thickness, Player.y-Thickness, Player.w+(Thickness*2), Player.h+(Thickness*2) }
                 return false
             end
