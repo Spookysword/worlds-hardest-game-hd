@@ -54,7 +54,7 @@ function DrawBG(gridX, wallColor, checkpointColor)
                     table.insert(toDrawLines, { (sizeX*x)-(Thickness/2), ((sizeX*y)-(Thickness/2))-yOffset, Thickness, sizeX+Thickness, 0, 0 })
                 end
                 if Level.Objects[k+1] ~= 'w' and Level.Objects[k+1] ~= nil then
-                    table.insert(toDrawLines, { (sizeX*x)+sizeX, ((sizeX*y)-(Thickness/2))-yOffset, Thickness, sizeX+Thickness, 0, 0 })
+                    table.insert(toDrawLines, { (sizeX*x)+sizeX-(Thickness/2), ((sizeX*y)-(Thickness/2))-yOffset, Thickness, sizeX+Thickness, 0, 0 })
                 end
             end
         end
