@@ -28,7 +28,6 @@ Level = { GridX = 24, Objects = {
   'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
   'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
   'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
   'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'
  }, 
   
@@ -52,8 +51,10 @@ function love.draw()
   love.graphics.clear(ToDec(Level.BgColor))
   
   DrawGrid(Level.GridX, ToDec(Level.GridColor))
-  DrawWall(Level.GridX, ToDec(Level.BgColor), ToDec(CheckpointColor))
+  DrawBG(Level.GridX, ToDec(Level.BgColor), ToDec(CheckpointColor))
   DrawPlayer(Player)
+
+  love.graphics.print("FPS: "..love.timer.getFPS(), 0, 0, 0, 5, 5)
   
   push:finish()
 end
@@ -66,13 +67,5 @@ function love.keypressed(key)
   if key == 'f11' then
     love.window.setFullscreen(not love.window.getFullscreen())
     push:resize(love.graphics.getWidth(), love.graphics.getHeight())
-  end
-  if key == 'up' then
-    Level.GridX = Level.GridX + 1
-    print(Level.GridX)
-  end
-  if key == 'down' then
-    Level.GridX = Level.GridX - 1
-    print(Level.GridX)
   end
 end
