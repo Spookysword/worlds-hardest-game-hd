@@ -43,6 +43,7 @@ end
 function love.update(dt)
   dt = math.min(dt, 1/30)
   HandlePlayerInput(dt)
+  PlayerMovement(Level.GridX)
 end
 
 function love.draw()
@@ -53,6 +54,11 @@ function love.draw()
   DrawGrid(Level.GridX, ToDec(Level.GridColor))
   DrawBG(Level.GridX, ToDec(Level.BgColor), ToDec(CheckpointColor))
   DrawPlayer(Player)
+  
+  --love.graphics.setColor(1, 0, 0, 1)
+  --love.graphics.rectangle('fill', DrawTest1[1], DrawTest1[2], DrawTest1[3], DrawTest1[4])
+  --love.graphics.setColor(0, 0, 1, 1)
+  --love.graphics.rectangle('fill', DrawTest2[1], DrawTest2[2], DrawTest2[3], DrawTest2[4])
 
   love.graphics.print("FPS: "..love.timer.getFPS(), 0, 0, 0, 5, 5)
   
