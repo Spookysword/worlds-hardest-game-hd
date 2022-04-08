@@ -3,7 +3,7 @@ function ToDec(color)
 end
 
 function Round(num)
-    return math.floor(num * 1 + 0.5) / 1
+    return math.floor(num + 0.5)
 end
 
 function AABB(x1, y1, w1, h1, x2, y2, w2, h2)
