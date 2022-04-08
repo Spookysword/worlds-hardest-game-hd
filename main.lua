@@ -1,3 +1,4 @@
+require "level"
 local push = require "push"
 require "randomFuncs"
 require "drawFuncs"
@@ -12,26 +13,6 @@ windowWidth, windowHeight = windowWidth*.7, windowHeight*.7
 
 -- General stats
 CheckpointColor = { 181, 254, 180 }
-
-Level = { GridX = 24, Objects = { 
-
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','s','s','s','w','w','w','w','w','w','w','w','w','w',' ',' ','e','e','e','w','w','w',
-  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
-  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
-  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
-  'w','w','w','s','s','s','w',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','w','e','e','e','w','w','w',
-  'w','w','w','s','s','s',' ',' ','w','w','w','w','w','w','w','w','w','w','e','e','e','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w',
-  'w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w','w'
- }, 
-  
-  BgColor = { 180, 181, 254 }, GridColor = { 230, 230, 255 }, BallColor = { 0, 0, 255 }, BallBorderColor = { 0, 0, 68 } }
 
 push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = false, resizable = true})
 
